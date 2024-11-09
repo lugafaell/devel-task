@@ -116,14 +116,16 @@ export default {
       this.isSidebarOpen = !this.isSidebarOpen;
     },
     async fetchTasks() {
+      const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
       const response = await axios.get(
-        `https://api.itmf.app.br/tasks`
+        `${API_BASE_URL}/tasks`
       );
       this.tasks = response.data.sort((a, b) => a.id - b.id);
     },
     async addTask(newTask) {
+      const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
       try {
-        await axios.post("https://api.itmf.app.br/tasks/create", newTask);
+        await axios.post("${API_BASE_URL}/tasks/create", newTask);
         await this.fetchTasks();
       } catch (error) {
         if (error.response && error.response.status === 409) {
@@ -139,11 +141,12 @@ export default {
       this.showConfirmAlert = true;
     },
     async removeTask() {
+      const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
       try {
         if (this.taskToDelete !== null) {
           this.confirmedTaskId = this.taskToDelete;
 
-          await axios.delete(`https://api.itmf.app.br/tasks/${this.taskToDelete}`);
+          await axios.delete(`${API_BASE_URL}/tasks/${this.taskToDelete}`);
 
           const updatedTasks = [...this.tasks];
           const deletedTaskIndex = updatedTasks.findIndex(
@@ -179,9 +182,10 @@ export default {
       }
     },
     async updateTask(updatedTask) {
+      const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
       try {
         await axios.put(
-          `https://api.itmf.app.br/tasks/${updatedTask.id}`,
+          `${API_BASE_URL}/tasks/${updatedTask.id}`,
           updatedTask
         );
 
@@ -258,10 +262,11 @@ export default {
       }
     },
     async updateTasksOrder(task1Id, task1Updates, task2Id, task2Updates) {
+      const API_BASE_URL = process.env.VUE_APP_API_BASE_URL;
       try {
         await Promise.all([
-          axios.put(`https://api.itmf.app.br/tasks/${task1Id}`, task1Updates),
-          axios.put(`https://api.itmf.app.br/tasks/${task2Id}`, task2Updates)
+          axios.put(`${API_BASE_URL}/tasks/${task1Id}`, task1Updates),
+          axios.put(`${API_BASE_URL}/tasks/${task2Id}`, task2Updates)
         ]);
 
         await this.fetchTasks();
