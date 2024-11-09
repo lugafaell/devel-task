@@ -13,7 +13,7 @@ import { TasksModule } from './tasks/tasks.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
       extra: {
         max: parseInt(process.env.DB_MAX_CONNECTIONS, 10),
         idleTimeoutMillis: parseInt(process.env.DB_IDLE_TIMEOUT, 10),
