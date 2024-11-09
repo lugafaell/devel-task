@@ -1,14 +1,14 @@
 # Devel Task
 
-Devel Task é uma plataforma robusta para registro e organização de Tasks. Ela oferece uma maneira eficiente de gerenciar e acompanhar suas Tasks, sendo ideal para organização e planejamento.
+Devel Task é uma plataforma para registro e organização de Tarefas. Ela oferece uma maneira eficiente de gerenciar e acompanhar os dados das suas Tarefas, sendo ideal para organização e gestão.
 
 ## Funcionalidades
 
 - Interface amigável
-- Tasks detalhadas com custo e data para melhor gerenciamento
-- Registro de Fotos para os seus Pets
+- Tarefas detalhas com Nome, Custo e Data Limite
 - Funcionalidade de busca para acesso rápido aos registros
 - Design responsivo para uso perfeito em desktops e dispositivos móveis
+- Filtros de Tarefas Completas e Incompletas
 
 ## Stack Tecnológica
 
@@ -31,7 +31,7 @@ Todos os serviços são conteinerizados usando Docker para ambientes de desenvol
 
 ## Implantação
 
-Devel Task está implantado em um Servidor Privado Virtual (VPS) na Google Cloud usando contêineres Docker. A aplicação é acessível através do domínio personalizado disponibilizado pelo próprio Desenvolvedor https://itmf.app.br, configurado com SSL para conexões seguras.
+Devel Task está implantado em um Servidor Privado Virtual (VPS) Google Cloud usando contêineres Docker. A aplicação é acessível através do domínio personalizado disponibilizado pelo próprio Desenvolvedor https://itmf.app.br, configurado com SSL para conexões seguras.
 
 ## Começando
 
@@ -54,7 +54,10 @@ Para executar o Capizoo localmente para desenvolvimento:
    npm install
    ```
 
-3. Inicie os servidores de desenvolvimento:
+3. Configure as variáveis de ambiente:
+   Crie arquivos `.env` nos diretórios `task-manager-frontend` e `task-manager-backend/src` baseados nos arquivos `.env.example` fornecidos.
+
+4. Inicie os servidores de desenvolvimento:
    ```
    # Inicie o frontend
    cd task-manager-frontend
@@ -64,12 +67,12 @@ Para executar o Capizoo localmente para desenvolvimento:
    cd task-manager-backend
    npm run start
    ```
-4. Caso opte por utilizar o docker, pode simplesmente executar o docker compose configurado na raiz do projeto para facilitar a execução e instalação de todas as dependências necessárias:
+5. Caso opte por utilizar o docker, pode simplesmente executar o docker compose configurado na raiz do projeto para facilitar a execução e instalação de todas as dependências necessárias:
    ```
    # Construa e execute os containers
    docker compose up --build
    ```
-5. Acesse a aplicação em `http://localhost:8080` (ou na porta especificada na sua configuração de frontend). Em caso de utilização do docker acesse a porta que está exposta o frontend da sua aplicação.
+6. Acesse a aplicação em `http://localhost:8080` (ou na porta especificada na sua configuração de frontend). Em caso de utilização do docker acesse a porta que está exposta o frontend da sua aplicação.
 
 
 ---
