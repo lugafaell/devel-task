@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TasksModule } from './tasks/tasks.module';
@@ -6,17 +7,17 @@ import { TasksModule } from './tasks/tasks.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'db',
+      host: process.env.DB_HOST,
       port: 5432,
-      username: 'develtask_user',
-      password: '200565',
-      database: 'devel_task',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
       extra: {
-        max: 20,
-        idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 5000,
+        max: parseInt(process.env.DB_MAX_CONNECTIONS, 10),
+        idleTimeoutMillis: parseInt(process.env.DB_IDLE_TIMEOUT, 10),
+        connectionTimeoutMillis: parseInt(process.env.DB_CONNECTION_TIMEOUT, 10),
       },
     }),
     TasksModule,
